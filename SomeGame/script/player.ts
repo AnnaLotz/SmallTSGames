@@ -2,7 +2,9 @@ namespace BarGame {
 
 class Player {
     health: number;
-    weapon: string; //Weapon;
-}
+    healthPacks: number;
+    weapon: string; //:Weapon;
 
 }
+
+}//namespace zu

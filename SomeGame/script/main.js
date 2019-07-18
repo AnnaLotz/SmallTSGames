@@ -1,8 +1,8 @@
-var Game1;
-(function (Game1) {
+var BarGame;
+(function (BarGame) {
     window.addEventListener("DOMContentLoaded", init);
     function init() {
         console.log("Hello World!");
-    }
-})(Game1 || (Game1 = {})); //close namespace
+    } //close init
+})(BarGame || (BarGame = {})); //close namespace
 //# sourceMappingURL=main.js.map
