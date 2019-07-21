@@ -1,0 +1,11 @@
+#playerDiv {
+    border: 1px solid white;
+}
+#barDiv {
+    border: 1px solid white;
+}
+
+* {
+    background-color: #202020;
+    color: white;
+}
