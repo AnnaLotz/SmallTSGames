@@ -1,13 +1,15 @@
 namespace BarGame {
 
-    export class Person { //Superklasse
+    export class Person extends Object { //Superklasse
 
-        name: string;
         health: number;
-        weapon: string; //:Weapon;
+        weapons: Weapon[]; //:Weapon;
         strenght: number;
         coins: number; //Münzen
 
+        constructor() {
+            super();
+        }
     }
 
 }//namespace zu

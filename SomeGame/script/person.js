@@ -1,6 +1,9 @@
 var BarGame;
 (function (BarGame) {
-    class Person {
+    class Person extends BarGame.Object {
+        constructor() {
+            super();
+        }
     }
     BarGame.Person = Person;
 })(BarGame || (BarGame = {})); //namespace zu
