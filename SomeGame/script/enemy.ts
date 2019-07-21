@@ -1,10 +1,10 @@
 namespace BarGame {
 
-    export class Enemy extends Person { 
+    export class Enemy extends Person {
 
-   constructor() {
-    super();
-   }
+        constructor() {
+            super();
+        }
     } //close class Enemy
 
 }//namespace zu

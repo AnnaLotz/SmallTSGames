@@ -2,48 +2,62 @@ var BarGame;
 (function (BarGame) {
     window.addEventListener("DOMContentLoaded", init);
     let player;
-    let enemies;
     let barDiv;
     function init() {
-        console.log("Hello World!");
         barDiv = document.getElementById("barDiv");
         document.getElementById("nextTableButton").addEventListener("click", nextTable);
         document.getElementById("shopButton").addEventListener("click", goToBar);
         player = new BarGame.Player;
-        updateHTML();
+        updatePlayerHTML();
     } //close init
-    function updateHTML() {
+    function updatePlayerHTML() {
         document.getElementById("healthStat").innerText = player.health.toString();
         document.getElementById("hpPacks").innerText = player.hpPacks.toString();
         document.getElementById("strengthStat").innerText = player.strenght.toString();
-    } //close updateHTML
-    function nextTable() {
+        document.getElementById("coinsStat").innerText = player.coins.toString();
+    } //close updatePlayerHTML
+    BarGame.updatePlayerHTML = updatePlayerHTML;
+    function createEnemyHTML() {
         barDiv.innerHTML = "";
-        enemies = [];
-        console.log("nächster Tisch");
-        let r = Math.floor(Math.random() * 3 + 1);
-        for (let i = 0; i < r; i++) {
-            let enemy = new BarGame.Junkie;
-            enemies.push(enemy);
-            createEnemyHTML(enemy);
+        for (let i = 0; i < BarGame.enemies.length; i++) {
+            let enemy = BarGame.enemies[i];
+            console.log(enemy);
+            let enemyDiv = document.createElement("div");
+            enemyDiv.id = "enemyDiv";
+            enemyDiv.innerHTML = enemy.name + "<p>Stärke: " + enemy.strenght + "</p>";
+            let fightButton = document.createElement("button");
+            fightButton.innerText = "Kämpfen!";
+            enemyDiv.appendChild(fightButton);
+            barDiv.appendChild(enemyDiv);
+            fightButton.addEventListener("click", function () {
+                player.fight(enemy);
+            });
         }
-    } //close nexTable
-    function createEnemyHTML(_enemy) {
-        console.log(_enemy);
-        let enemyDiv = document.createElement("div");
-        enemyDiv.id = "enemyDiv";
-        enemyDiv.innerHTML = _enemy.name + "<p>Stärke: " + _enemy.strenght + "</p>";
-        let fightButton = document.createElement("button");
-        fightButton.innerText = "Kämpfen!";
-        enemyDiv.appendChild(fightButton);
-        barDiv.appendChild(enemyDiv);
-        fightButton.addEventListener("click", fight);
-    } //close createEnemy
+    } //close createEnemyHtml
+    BarGame.createEnemyHTML = createEnemyHTML;
     function goToBar() {
         console.log("gehe an die Bar");
     } //close goToBar
-    function fight() {
-        console.log("fight");
-    } //close fight
+    function nextTable() {
+        console.log("nächster Tisch");
+        BarGame.enemies = [];
+        let r = Math.floor(Math.random() * 3 + 1);
+        for (let i = 0; i < r; i++) {
+            let enemy = new BarGame.Junkie;
+            BarGame.enemies.push(enemy);
+        }
+        createEnemyHTML();
+    } //close nexTable
+    function findEnemyInArray(_enemy) {
+        let foundEnemyIndex;
+        for (let i = 0; i < BarGame.enemies.length; i++) {
+            if (BarGame.enemies[i] == _enemy) {
+                foundEnemyIndex = i;
+                break;
+            }
+        }
+        return foundEnemyIndex;
+    } //close findEnemyInArray
+    BarGame.findEnemyInArray = findEnemyInArray;
 })(BarGame || (BarGame = {})); //close namespace
 //# sourceMappingURL=main.js.map
