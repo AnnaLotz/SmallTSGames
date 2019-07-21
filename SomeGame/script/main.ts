@@ -11,8 +11,8 @@ namespace BarGame {
         document.getElementById("shopButton").addEventListener("click", goToBar);
         player = new Player;
 
-        updatePlayerHTML();
         player.getWeapon();
+        updatePlayerHTML();
     } //close init
 
 
@@ -39,6 +39,14 @@ namespace BarGame {
         document.getElementById("hpPacks").innerText = player.hpPacks.toString();
         document.getElementById("strengthStat").innerText = player.strenght.toString();
         document.getElementById("coinsStat").innerText = player.coins.toString();
+
+        document.getElementById("weaponsDiv").innerHTML = "";
+        for (let i: number = 0; i < player.weapons.length; i++) {
+            let weapon: Weapon = player.weapons[i];
+            let weaponDiv: HTMLDivElement = document.createElement("div");
+            weaponDiv.innerHTML += "<p>" + weapon.name + ":</p><p>+ " + weapon.strength + " Stärke, Haltbarkeit: " + weapon.durability + "</p>" ;
+            document.getElementById("weaponsDiv").appendChild(weaponDiv);
+        }
     } //close updatePlayerHTML
 
     export function createEnemyHTML(): void {
@@ -46,7 +54,7 @@ namespace BarGame {
         for (let i: number = 0; i < enemies.length; i++) {
             let enemy: Enemy = enemies[i];
             let enemyDiv: HTMLDivElement = document.createElement("div");
-            enemyDiv.id = "enemyDiv";
+            enemyDiv.className = "enemyDiv";
             enemyDiv.innerHTML = enemy.name + "<p>Stärke: " + enemy.strenght + "</p><p>Gesundheit: " + enemy.health + "</p>";
             enemyDiv.innerHTML += "<p>Kämpfe mit: ";
 
